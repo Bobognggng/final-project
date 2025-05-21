@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 function AddMovie() {
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('');
+  const [year, setYear] = useState('');
+  const [description, setDescription] = useState('');
+  const [director, setDirector] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -13,7 +16,7 @@ function AddMovie() {
     setError('');
     setSuccess('');
 
-    const movie = { title, genre };
+    const movie = { title, genre, year, description, director };
 
     try {
       const response = await fetch('http://localhost:5000/api/movies', {
@@ -54,6 +57,30 @@ function AddMovie() {
           <input
             value={genre}
             onChange={e => setGenre(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Year:</label><br />
+          <input
+            value={year}
+            onChange={e => setYear(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Description:</label><br />
+          <input
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Director:</label><br />
+          <input
+            value={director}
+            onChange={e => setDirector(e.target.value)}
             required
           />
         </div>
